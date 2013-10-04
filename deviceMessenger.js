@@ -1,6 +1,6 @@
 var request = require('request');
 request.post({
-  url: 'http://interactivespaces.herokuapp.com:35863/incoming',
+  url: 'http://interactivespaces.herokuapp.com/incoming',
   headers: {
     'Content-Type': 'application/json'
   },
