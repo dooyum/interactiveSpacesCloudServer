@@ -44,7 +44,9 @@ app.post('/incoming', function(req, res) {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: req.body
+    body: JSON.stringify({
+      message: req.body
+    })
   }, function(error, response, body){
     console.log("Message has been sent");
   });
