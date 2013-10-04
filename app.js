@@ -33,6 +33,28 @@ app.get('/users', user.list);
 
 app.post('/incoming', function(req, res) {
   console.log(req.body);
+  console.log("Message Received");
+  res.send("ok");
+
+  //pass message on to interective spaces
+  var request = require('request');
+  var interactiveSpacesUrl = 'http://interactivespaces.herokuapp.com/outgoing';
+  request.post({
+    url: interactiveSpacesUrl,
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: req.body
+  }, function(error, response, body){
+    console.log("Message has been sent");
+  });
+});
+
+//Dummy method to test if message is passed on
+//TODO(dooyum) delete this method when IS is set up
+app.post('/outgoing', function(req, res) {
+  console.log("Message Passed On");
+  console.log(req.body);
   res.send("ok");
 });
 
