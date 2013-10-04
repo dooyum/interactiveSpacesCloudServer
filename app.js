@@ -36,6 +36,19 @@ app.post('/incoming', function(req, res) {
   res.send("ok");
 });
 
+var request = require('request');
+request.post({
+  url: 'http://interactivespaces.herokuapp.com:' + app.get('port') + '/incoming',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    direction: "up"
+  })
+}, function(error, response, body){
+  console.log(body);
+});
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
