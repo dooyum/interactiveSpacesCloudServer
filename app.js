@@ -39,7 +39,7 @@ app.post('/toCloud', function(req, res) {
   //pass message on to interective spaces
   var request = require('request');
   //f local use localhost
-  var interactiveSpacesUrl = app.get('port') == '3000' ? 'http://localhost:3000/fromCloud' : 'http://interactivespaces.herokuapp.com/fromCloud';
+  var interactiveSpacesUrl = app.get('port') == 3000 ? 'http://localhost:3000/fromCloud' : 'http://interactivespaces.herokuapp.com/fromCloud';
   request.post({
     url: interactiveSpacesUrl,
     headers: {
