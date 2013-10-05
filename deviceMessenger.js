@@ -1,6 +1,12 @@
 var request = require('request');
+var express = require('express');
+
+var app = express();
+// all environments
+app.set('port', process.env.PORT || 3000);
+var url = app.get('port') == '3000' ? 'http://localhost:3000/toCloud' : 'http://interactivespaces.herokuapp.com/toCloud';
 request.post({
-  url: 'http://interactivespaces.herokuapp.com/incoming',
+  url: url,
   headers: {
     'Content-Type': 'application/json'
   },

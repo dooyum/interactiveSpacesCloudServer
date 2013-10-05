@@ -31,14 +31,15 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 
-app.post('/incoming', function(req, res) {
+app.post('/toCloud', function(req, res) {
   console.log(req.body);
   console.log("Message Received");
   res.send("ok");
 
   //pass message on to interective spaces
   var request = require('request');
-  var interactiveSpacesUrl = 'http://interactivespaces.herokuapp.com/outgoing';
+  //f local use localhost
+  var interactiveSpacesUrl = app.get('port') == '3000' ? 'http://localhost:3000/fromCloud' : 'http://interactivespaces.herokuapp.com/fromCloud';
   request.post({
     url: interactiveSpacesUrl,
     headers: {
@@ -54,7 +55,7 @@ app.post('/incoming', function(req, res) {
 
 //Dummy method to test if message is passed on
 //TODO(dooyum) delete this method when IS is set up
-app.post('/outgoing', function(req, res) {
+app.post('/fromCloud', function(req, res) {
   console.log("Message Passed On");
   console.log(req.body);
   res.send("ok");
